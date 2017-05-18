@@ -131,12 +131,19 @@
 		vertical-align: baseline;
 	}
 
-	div .poster{
+	.info{
+		display: flex;
+	}
+	
+	.poster{
 		margin: 0 auto;
 		padding: 0;
 		border: 0;
 	}
-	div .dados{
+	#nomeFilme{
+		font-size: 200%;
+	}
+	.dados{
 		
 		padding: 5em;
 		border: 0;
