@@ -11,8 +11,29 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
         
         <script type="text/javascript" src="assets/js/tmdb.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        
+        <script>
+            
+               $(document).ready(function(){
+                  $('#enviarEmail').submit(function(){
+                     var emailCliente = $('#email').val();
+                     var dados = "&email=" + emailCliente;
+                     $.ajax({
+                        type: "POST",
+                        url: "enviarEmail.php",
+                        data: dados,
+                        success: function(data)
+                        {
+                            alert(data);
+                        }
+                     }); 
+                  }); 
+               });
+            
+        </script>
 	</head>
 	<body onload="dadosFilmes()" class="landing">
 		<div id="page-wrapper">
@@ -55,7 +76,7 @@
 							<h2>Saiba mais</h2>
 							<p>Envie seu email abaixo para receber atualizações sobre este filme</p>
 						</header>
-						<form method="post" action="#" class="container 50%">
+						<form method="post" id="enviarEmail" onload="emailCliente()" action="#" class="container 50%">
 							<div class="row uniform 50%">
 								<div class="8u 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="joaolucas@gmail.com" /></div>
 								<div class="4u$ 12u$(xsmall)"><input type="submit" value="Enviar" class="fit special" /></div>
