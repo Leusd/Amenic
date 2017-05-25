@@ -18,18 +18,30 @@
         <script>
             
                $(document).ready(function(){
-                  $('#enviarEmail').submit(function(){
+                  $('#enviarEmail').submit(function(e){
+				     // Cancela o Submit do form
+					 e.preventDefault();
+					 
                      var emailCliente = $('#email').val();
                      var dados = "&email=" + emailCliente;
-                     $.ajax({
+					 
+					$.ajax({
                         type: "POST",
                         url: "enviarEmail.php",
-                        data: dados,
+						data: dados,
                         success: function(data)
                         {
-                            alert(data);
+                            if (data == '202') {
+							  alert ('Email enviado com sucesso!');
+							} 
+							else {
+								alert('Deu ruim!!!');
+							}
+							
                         }
-                     }); 
+                     });
+					 
+					
                   }); 
                });
             

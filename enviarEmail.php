@@ -1,43 +1,53 @@
 <?php
-require_once("PHPMailer/class.phpmailer.php");
-require_once("PHPMailer/class.smtp.php");
 
-$emailCliente = $_POST['email'];
-$emailServidor = 'pedrim6661@gmail.com';
 
-$mail = new PHPMailer;
+//$emailCliente = $_POST['email'];
+//return "Hello World";
 
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+// mail ("seuemail@seudominio.com.br", "Assunto da Mensagem", "Conteúdo do
+// e-mail", "From: email@seudominio.com.br");
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = "smtp.gmail.com";  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = $emailServidor;                 // SMTP username
-$mail->Password = 'secret';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
 
-$mail->setFrom('from@example.com', 'Mailer');
-$mail->addAddress($emailCliente, 'Joe User');     // Add a recipient
-$mail->addAddress($emailCliente);               // Name is optional
-$mail->addReplyTo('info@example.com', 'Information');
-$mail->addCC('cc@example.com');
-$mail->addBCC('bcc@example.com');
+// If you are using Composer (recommended)
+// require 'vendor/autoload.php';
+include(dirname(__DIR__) . '/amenic/vendor/sendgrid/php-http-client/lib/Client.php');
+$email = $_POST['email'];
+// If you are not using Composer
+// require("path/to/sendgrid-php/sendgrid-php.php");
 
-$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-$mail->isHTML(true);                                  // Set email format to HTML
+$request_body = json_decode('{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "$email"
+        }
+      ],
+      "subject": "Sending with SendGrid is Fun"
+    }
+  ],
+  "from": {
+    "email": "amenicetis@gmail.com"
+  },
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "and easy to do anywhere, even with PHP"
+    }
+  ]
+}');
+$apiKey = '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';
+// $apiKey = getenv('SENDGRID_API_KEY');
+// $sg = new \SendGrid($apiKey);
 
-$mail->Subject = 'Amenic';
-$mail->Body    = '<b>Bom dia!</b>';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$headers = ['Authorization: Bearer ' . $apiKey];
+$client = new Client('https://api.sendgrid.com', $headers, '/v3');
 
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
-}
+$response = $client->mail()->send()->post($request_body);
+// echo $response->statusCode();
+// echo $response->body();
+// print_r($response->headers());
+echo json_encode($response->statusCode());
 
 
 
