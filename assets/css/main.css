@@ -3494,7 +3494,7 @@ header, div{
 
 /* Banner */
 /* Barra de pesquisa*/
-        input[type=text] {
+        #busca {
         position: flex;
         display: flex;
         padding: auto; 
@@ -3515,7 +3515,7 @@ header, div{
         -webkit-transition: width 0.4s ease-in-out;
         transition: width 0.4s ease-in-out;
         }
-        input[type=text]:focus {
+        #busca{
                                 width: 100%;
                                 }
     #banner {
