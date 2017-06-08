@@ -39,7 +39,7 @@ header, div{
     float:justify;
     padding-bottom: 280px;
 	display:none;
-}*/
+}
 .demo-3 {
     position:relative;
     overflow:hidden;
@@ -145,26 +145,26 @@ header, div{
 	.poster{
         margin-top: 100px;
         margin-bottom: 100px;
-        margin-right: 150px;
-        margin-left: 80px;
-		padding: 0;
-		border: 0;
+        margin-right: 5%;
+        margin-left: 5%;
+		padding: 1%;
+		border: 1%;
+        height: 10%;
 	}
 	#nomeFilme{
 		font-size: 200%;
 	}
 	.dados{
 		
-		padding: 5em;
-		border: 0;
+		padding: 1%;
 		font-size: 100%;
 		font: inherit;
 		height:100%;
 		width:500px;
-		margin-top: 50px;
+		margin-top: 10%;
         margin-bottom: 100px;
-        margin-right: 150px;
-        margin-left: 1px;
+        margin-right: 10%;
+        margin-left: 10%;
 
 	}
 
@@ -2665,9 +2665,10 @@ header, div{
 		}
 
 	ul {
+        float: left;
 		list-style: disc;
 		margin: 0 0 2em 0;
-		padding-left: 1em;
+		padding-left: 0;
 	}
 
 		ul li {
@@ -3403,25 +3404,28 @@ header, div{
 	}
 
 	#header {
+        display: flex;
 		background-color: black;
 		box-shadow: 0 0 0.25em 0 rgba(0, 0, 0, 0.25);
 		cursor: default;
 		height: 3.9em;
-		left: 0;
+        right: 0;
+        left: 0;
 		line-height: 3.5em;
 		position: fixed;
 		top: 0;
 		width: 100%;
 		z-index: 100;
-        position:fixed;
-       
+        float: relative;
 	}
-
-    #header #logo img{
-		width:58px;
-        height:58px;
+    #logo img {
+        margin-right: auto;
+		width:7%;
+        height:97%;
 	   }
-		#header h1 {
+		#logo {
+            display: flex;
+            width: auto;
 			height: inherit;
 			left: 1.25em;
 			line-height: inherit;
@@ -3431,12 +3435,17 @@ header, div{
 		}
 
 		#header nav {
+            display: flex;
 			position: absolute;
 			right: 1em;
 			top: 0;
+            text-align: center;
+            margin-right: 1px;
+            border: 1px;
 		}
 
 			#header nav ul {
+                display: flex;
 				margin: 0;
 			}
 
@@ -3484,8 +3493,32 @@ header, div{
 	}
 
 /* Banner */
-
-	#banner {
+/* Barra de pesquisa*/
+        input[type=text] {
+        position: flex;
+        display: flex;
+        padding: auto; 
+        padding-left: 1% auto;    
+        margin-top: 4%;
+        margin-left: 1% auto;
+        width: 50%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        color: black;
+        background-image: url('searchicon.png');
+        background-position: 10px 20px 0px 10px; 
+        background-repeat: no-repeat;
+        padding: 1%;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        }
+        input[type=text]:focus {
+                                width: 100%;
+                                }
+    #banner {
 		background-attachment: fixed;
 		background-color: #272833;
 		background-position: center center;
